@@ -1,67 +1,39 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-    text-align: center;
+.container{
+	display:flex;
+	justify-content:center;
 }
-
-.container {
-    margin-top: 50px;
-}
-
-#player-form {
-    padding: 20px;
-}
-
-input {
-    padding: 10px;
-    margin: 10px;
-    width: 200px;
-}
-
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    margin: 10px;
-    cursor: pointer;
-}
-
-#game {
-    display: none;
-}
-
-.message {
-    font-size: 20px;
-    margin: 10px 0;
-    font-weight: bold;
-}
-
 .board {
     display: grid;
-    grid-template-columns: repeat(3, 100px);
-    grid-template-rows: repeat(3, 100px);
+    grid-template-columns: repeat(3, 1fr);
     gap: 5px;
-    justify-content: center;
-    margin: 20px auto;
+    width: 300px;
+    margin: auto;
+	font-family:Arial, sans-serif;
 }
 
 .cell {
     width: 100px;
     height: 100px;
-    background-color: #ddd;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 32px;
+    background: lightgray;
+    font-size: 36px;
     font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
+    border-radius: 5px;
+	
 }
 
 .cell:hover {
-    background-color: #bbb;
+    background: gray;
 }
-
-#reset {
-    display: none;
+#startScreen{
+	display:flex;
+	flex-direction:column;
+	max-width:200px
+}
+#submit{
+	height:40px;
+	margin-top:10px
 }
