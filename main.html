@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-	<link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-	<!-- the entire body must be written by student -->
-	<div class="container">
+
+    <div class="container">
+        <!-- Start Screen -->
         <div id="startScreen">
             <h1>Tic Tac Toe</h1>
             <label>Player 1:</label>
@@ -18,6 +19,7 @@
             <button id="submit">Start Game</button>
         </div>
 
+        <!-- Game Screen -->
         <div id="gameScreen" style="display: none;">
             <h1>Tic Tac Toe</h1>
             <div class="message" id="message"></div>
@@ -32,14 +34,11 @@
                 <div class="cell" id="8"></div>
                 <div class="cell" id="9"></div>
             </div>
+            <button id="restart">Restart Game</button>
         </div>
     </div>
 
-    <script type="text/javascript" src="./script.js">
-</script>
+    <script src="script.js"></script>
 
 </body>
-
 </html>
-
-

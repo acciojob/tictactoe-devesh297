@@ -1,4 +1,7 @@
-document.getElementById("submit").addEventListener("click", startGame);
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("submit").addEventListener("click", startGame);
+    document.getElementById("restart").addEventListener("click", restartGame);
+});
 
 let player1 = "", player2 = "";
 let currentPlayer = "";
@@ -7,8 +10,8 @@ let board = ["", "", "", "", "", "", "", "", ""];
 let gameActive = true;
 
 function startGame() {
-    player1 = document.getElementById("player-1").value || "Player 1";
-    player2 = document.getElementById("player-2").value || "Player 2";
+    player1 = document.getElementById("player1").value || "Player 1";
+    player2 = document.getElementById("player2").value || "Player 2";
 
     document.getElementById("startScreen").style.display = "none";
     document.getElementById("gameScreen").style.display = "block";
@@ -17,13 +20,15 @@ function startGame() {
     currentSymbol = "x";
     document.getElementById("message").innerText = `${currentPlayer}, you're up`;
 
-    document.querySelectorAll(".cell").forEach(cell => {
-        cell.innerText = "";
-        cell.addEventListener("click", handleCellClick, { once: true });
-    });
-
     board = ["", "", "", "", "", "", "", "", ""];
     gameActive = true;
+
+    document.querySelectorAll(".cell").forEach(cell => {
+        cell.innerText = "";
+        cell.style.color = "black";
+        cell.removeEventListener("click", handleCellClick);
+        cell.addEventListener("click", handleCellClick, { once: true });
+    });
 }
 
 function handleCellClick(event) {
@@ -36,15 +41,18 @@ function handleCellClick(event) {
 
     board[cellIndex] = currentSymbol;
     cell.innerText = currentSymbol;
-
-    if (checkWinner()) {
+    
+    const winner = checkWinner();
+    if (winner) {
         document.getElementById("message").innerText = `${currentPlayer}, congratulations you won!`;
+        highlightWinningCells(winner);
         gameActive = false;
         return;
     }
 
     if (board.every(cell => cell !== "")) {
         document.getElementById("message").innerText = "It's a draw!";
+        gameActive = false;
         return;
     }
 
@@ -64,8 +72,24 @@ function checkWinner() {
         [0, 4, 8], [2, 4, 6]             
     ];
 
-    return winPatterns.some(pattern => {
+    for (const pattern of winPatterns) {
         const [a, b, c] = pattern;
-        return board[a] && board[a] === board[b] && board[a] === board[c];
+        if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+            return pattern; // Return winning cells
+        }
+    }
+    return null;
+}
+
+function highlightWinningCells(winningCells) {
+    winningCells.forEach(index => {
+        document.getElementById((index + 1).toString()).style.color = "red";
     });
+}
+
+function restartGame() {
+    document.getElementById("startScreen").style.display = "flex";
+    document.getElementById("gameScreen").style.display = "none";
+    document.getElementById("player1").value = "";
+    document.getElementById("player2").value = "";
 }
