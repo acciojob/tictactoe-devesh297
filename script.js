@@ -7,15 +7,15 @@ let board = ["", "", "", "", "", "", "", "", ""];
 let gameActive = true;
 
 function startGame() {
-    player1 = document.getElementById("player1").value || "Player1";
-    player2 = document.getElementById("player2").value || "Player2";
+    player1 = document.getElementById("player-1").value || "Player 1";
+    player2 = document.getElementById("player-2").value || "Player 2";
 
     document.getElementById("startScreen").style.display = "none";
     document.getElementById("gameScreen").style.display = "block";
 
     currentPlayer = player1;
     currentSymbol = "x";
-    document.getElementById("message").innerText = ${currentPlayer}, you're up;
+    document.getElementById("message").innerText = `${currentPlayer}, you're up`;
 
     document.querySelectorAll(".cell").forEach(cell => {
         cell.innerText = "";
@@ -38,7 +38,7 @@ function handleCellClick(event) {
     cell.innerText = currentSymbol;
 
     if (checkWinner()) {
-        document.getElementById("message").innerText = `${currentPlayer} congratulations you won! `;
+        document.getElementById("message").innerText = `${currentPlayer}, congratulations you won!`;
         gameActive = false;
         return;
     }
@@ -54,7 +54,7 @@ function handleCellClick(event) {
 function switchPlayer() {
     currentPlayer = currentPlayer === player1 ? player2 : player1;
     currentSymbol = currentSymbol === "x" ? "o" : "x";
-    document.getElementById("message").innerText = ${currentPlayer}, you're up;
+    document.getElementById("message").innerText = `${currentPlayer}, you're up`;
 }
 
 function checkWinner() {
@@ -68,3 +68,4 @@ function checkWinner() {
         const [a, b, c] = pattern;
         return board[a] && board[a] === board[b] && board[a] === board[c];
     });
+}
